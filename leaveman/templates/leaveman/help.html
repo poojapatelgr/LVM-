@@ -1,0 +1,195 @@
+{% extends "leaveman/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+
+    <div class="row">
+        <div class="col-md-8">
+            <div class="accordion md-accordion" id="accordionEx" role="tablist" aria-multiselectable="true">
+
+		    <div class="card">
+                    <a class="collapsed" data-toggle="collapse" data-parent="#accordionEx" href="#collapseThree3"
+                      aria-expanded="false" aria-controls="collapseThree3">
+                      <h5 class="mb-0">
+                        General Information <i class="fas fa-angle-down rotate-icon"></i>
+                      </h5>
+                    </a>
+                </div>
+                  <div id="collapseThree3" class="collapse" role="tabpanel" aria-labelledby="headingThree3" data-parent="#accordionEx">
+                    <div class="card-body">
+			    1) You can cancel the leave date(s) on or before the corresponding date(s).</br>
+			    2) Cancelled leave has to be approved by the line manager.</br>
+			    3) You can  apply for leave from current date to a max. of 30 days from current date.</br>
+			    4) Make sure information in the Preview is correct before submitting.</br>
+			    5) You can also apply for leave at https://lms.myshaala.org/</br> 
+			    	&nbsp <strong>Login credentials:</strong></br> 
+				&nbsp Username:<em> Employee ID</em></br>
+				&nbsp Password: <em>Joined Date</em></br>
+                    </div>
+                  </div>
+
+
+                <div class="card">
+                    <a class="collapsed" data-toggle="collapse" data-parent="#accordionEx" href="#collapseOne1" aria-expanded="true"
+                      aria-controls="collapseOne1">
+                      <h5 class="mb-0">
+                        Official Employee Leave Policy<i class="fas fa-angle-down rotate-icon"></i>
+                      </h5>
+                    </a>
+                  </div>
+                  
+                  <!-- Card body -->
+                  <div id="collapseOne1" class="collapse" role="tabpanel" aria-labelledby="headingOne1" data-parent="#accordionEx">
+                    <div class="card-body">
+                        <table class="table table-striped mt-2 mb-2" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th class="font-weight-bold text-left">Policy</th>
+                                    <th class="font-weight-bold text-left">Days</th>
+                                </tr>   
+                            </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Max.Rollover</td>
+                                        <td>{{lp.ro}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Max. Personal Leave/year</td>
+                                        <td>{{lp.pl}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Max. Sick Leave/year</td>
+                                        <td>{{lp.sl}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Maternity Leave</td>
+                                        <td>{{lp.mt}}</td>
+                                    </tr>
+                                    <tr>
+					<td>Paternity Leave</td>
+                                        <td>{{lp.pt}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Marriage</td>
+                                        <td>{{lp.ma}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td >Earned Personal Leave/month</td>
+                                        <td >{{lp.eplm}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td >Earned Sick Leave/month</td>
+                                        <td >{{lp.eslm}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td >Max. Borrowable Personal Leave</td>
+                                        <td >{{lp.mpleb}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td >Max. Borrowable Sick Leave</td>
+                                        <td >{{lp.mpseb}}</td>
+                                    </tr>
+                                </tbody>
+                        </table>
+                    </div>
+                </div>
+               
+                <div class="card">
+                    <a class="collapsed" data-toggle="collapse" data-parent="#accordionEx" href="#collapseTwo2"
+                      aria-expanded="false" aria-controls="collapseTwo2">
+                      <h5 class="mb-0">
+                       Official Consultant Leave Policy<i class="fas fa-angle-down rotate-icon"></i>
+                      </h5>
+                    </a>
+                  </div>
+  
+                  <!-- Card body -->
+                  <div id="collapseTwo2" class="collapse" role="tabpanel" aria-labelledby="headingTwo2" data-parent="#accordionEx">
+                    <div class="card-body">
+                        <table class="table table-striped mt-2 mb-2" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th class="font-weight-bold text-left">Policy</th>
+                                    <th class="font-weight-bold text-left">Days</th>
+                                </tr>   
+                            </thead>
+                                <tbody>
+                                    
+                                    <tr>
+                                        <td >Max. Personal Leave/year</td>
+                                        <td >{{lp.pl}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td >Max. Sick Leave/year</td>
+                                        <td >{{lp.sl}}</td>
+                                    </tr>
+                        
+                                    <tr>
+                                        <td >Marriage</td>
+                                        <td >{{lp.ma}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td >Earned Personal Leave/month</td>
+                                        <td >{{lp.eplm}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td >Earned Sick Leave/month</td>
+                                        <td >{{lp.eslm}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td >Max. Borrowable Personal Leave</td>
+                                        <td >{{lp.mplcb}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td >Max. Borrowable Sick Leave</td>
+                                        <td >{{lp.mpscb}}</td>
+                                    </tr>
+                                </tbody>
+                        </table>
+                  </div>
+                </div>
+                
+
+                  <div class="card">
+                    <a class="collapsed" data-toggle="collapse" data-parent="#accordionEx" href="#collapseThree4"
+                      aria-expanded="false" aria-controls="collapseThree4">
+                      <h5 class="mb-0">
+                        How Remaining Personal/Sick Leave are calculated ? <i class="fas fa-angle-down rotate-icon"></i>
+                      </h5>
+                    </a>
+                </div>
+                  <div id="collapseThree4" class="collapse" role="tabpanel" aria-labelledby="headingThree4" data-parent="#accordionEx">
+                    <div class="card-body">
+                        <strong>Personal Leave </strong>= Rollover + (Number of months from Start Date * Personal Leave per month) + Max. Personal Leave(Borrow) - Taken</br>
+                    </br>
+                       <strong> Sick Leave </strong>= (Number of months from Start Date * Sick Leaves per month) + Max. Sick Leave(Borrow) - Taken</br>
+		       </br>
+		      <strong>Example 1:</strong></br>
+                        Role: Consultant</br>
+                        Start Date = 01/01/2022</br>
+                        Rollover = 0</br>
+                        Personal Leave per month = 1.5</br>
+                        Sick Leave per month = 1</br>
+                        On Jan 1st, 2022:</br>
+                        Remaing Personal Leave = 0 + (0 * 1.5) + 3 = 3 days</br>
+                        Remaing Sick Leave = (0 * 1) + 3 = 3 days</br>
+			</br> 
+		        <strong>Example 2:</strong></br>
+			Role: Consultant</br>
+                        Start Date = 01/01/2022</br>
+                        Rollover = 0</br>
+                        Earned Personal Leave per month = 1.5</br>
+                        Earned Sick Leave per month = 1.5</br>
+			Personal Leave already taken = 2</br>
+			On Feb 1st, 2022:</br>
+                        Remaing Personal Leave = 0 + (1 * 1.5) + 3 - 2 = 2.5 days</br>
+                        Remaing Sick Leave = (1 * 1) + 3 = 4 days</br>
+		    </div>
+                  </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    {% endblock content %}

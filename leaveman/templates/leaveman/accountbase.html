@@ -1,0 +1,152 @@
+{% load crispy_forms_tags %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>LVM - Home</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+    <link rel="stylesheet" href="{% static 'leaveman/dist/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="{% static 'leaveman/dist/css/mdb.min.css' %}">
+  
+  </head>
+
+  <body class="single-page">
+    <header>
+      <nav class="navbar fixed-top navbar-expand-lg scrolling-navbar navbar-dark bg-primary p-0 m-0" >
+        <div class="container justify-content-left align-items-left">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-4"
+            aria-controls="navbarSupportedContent-4" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent-4">
+            <ul class="navbar-nav">
+              {% with url_name=request.resolver_match.url_name %}
+              <li class="nav-item ml-4 mb-0 {% if url_name == 'export' %}active{% endif %}">
+                <a class="nav-link waves-effect waves-light" href="{% url 'leaveman:export' %}">Export</a>
+              </li>
+                <li class="nav-item ml-4 mb-0 {% if url_name == 'ls_history' %}active{% endif %}">
+                  <a class="nav-link waves-effect waves-light" href="{% url 'leaveman:ls_history' %}">Employee History</a>
+                </li>
+                <li class="nav-item ml-4 mb-0 {% if url_name == 'logout' %}active{% endif %}">
+                  <a class="nav-link waves-effect waves-light" href="{% url 'leaveman:logout' %}"> Logout</a>
+                </li>
+              {% endwith %}
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main>
+      <div class="container">
+        <section class="mt-5 pb-1 wow fadeIn">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card card-cascade narrower z-depth-1 border-blue">
+                <div>
+                  {% csrf_token %}
+                </div>
+                <div class="card-body">
+                  {% if messages %}
+                  {% for message in messages %}
+                  <div class="alert alert-{{ message.tags }}">
+                    {{ message }}
+                  </div>
+                  {% endfor %}
+                  {% endif %}
+                  {% block content %}
+                  {% endblock %}
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+    <script> hideobjects();</script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+	<script type="text/javascript" src="{% static 'leaveman/dist/js/popper.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'leaveman/dist/js/bootstrap.js' %}"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+	<script type="text/javascript" src="{% static 'leaveman/dist/js/mdb.min.js' %}"></script>
+    <script>
+      $(document).ready(function() {
+          $('#history').DataTable({
+       				"lengthChange": false,
+                	"ordering": false
+   				});
+      } );
+      $(document).ready(function() {
+          $('#leaveToday').DataTable({
+       				"lengthChange": false,
+                	"ordering": false
+   				});
+      } );
+      $(document).ready(function() {
+          $('#approveList').DataTable({
+       				"lengthChange": false,
+                	"ordering": false,
+                  "searching": false
+   				});
+      } );
+      $(document).ready(function() {
+          $('#approvehist').DataTable({
+       				"lengthChange": false,
+                	"ordering": false
+   				});
+      } );
+      $(document).ready(function() {
+          $('#holiday').DataTable({
+              "lengthChange": false,
+                  "ordering": false,
+                  "searching": false,
+                  "paging":false
+          });
+      } );
+    </script>
+    <script>
+      $(document).ready(function() {
+        console.log('ready');
+        $('#select_all').click(function() {
+        $('.form-check, .form-check-input, .form-check-label').each(function(){
+                  this.checked = true;
+          });
+      });
+      });
+    </script>
+    <script>
+      function hideobjects() {
+        if ($("#id_reason").val().match(/.*HD$/)) {
+          $("#id_leave_period").show();
+          $("label[for='id_leave_period']").show();
+          $("#id_num_days").hide();
+          $("label[for='id_num_days']").hide();
+        } else {
+          $("#id_leave_period").hide();
+          $("label[for='id_leave_period']").hide();
+          $("#id_num_days").show();
+          $("label[for='id_num_days']").show();
+        }
+        if (($("#id_reason").val().match(/.ATER$/)) ||
+            ($("#id_reason").val().match(/MARRY$/))) {
+            $("#id_leave_period").hide();
+            $("label[for='id_leave_period']").hide();
+            $("#id_num_days").hide();
+            $("label[for='id_num_days']").hide();
+        }
+      };
+      $(document).ready(function() {
+      console.log("ready")
+      console.log($("#id_reason").val())
+        hideobjects();
+        $("#id_reason").change(function() {
+          hideobjects();
+        })
+      });     
+    </script>
+  </body>
+</html>

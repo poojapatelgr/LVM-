@@ -1,0 +1,59 @@
+
+{% extends "leaveman/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="card m-2">
+            <form method="POST">
+                <div class="card-header">
+                    {% csrf_token %}
+                        <a class="btn btn-sm blue-gradient p-2" type="button" href="{% url 'leaveman:approved_history' %}">History</a>
+                        <button class="btn btn-sm blue-gradient float-right p-2" type="submit" name="_submit">Submit</button>
+                        <a class="btn btn-sm blue-gradient float-right p-2" type="button" name=_selectall id='select_all'>Select All</a>
+                    {% if naprls|length == 0 %}
+                    <h5 class="card-title"> No approvals pending </h5>
+                    {% else %}
+                </div>
+                <div class="card-body table-responsive">
+                    <table id="approveList" class="table table-striped mt-2 mb-2" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th class="font-weight-bold">Requestor</th>
+                                <th class="font-weight-bold text-center">Date</th>
+                                <th class="font-weight-bold">Reason</th>
+                                <th class="font-weight-bold text-center">Approve</th>
+                                <th class="font-weight-bold text-center">Status</th>
+                                <th class="font-weight-bold text-center">Days</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for leave in naprls %}
+                                <tr>
+                                    <td>{{leave.recname|title}}</td>
+                                    <td class="text-center">{{leave.from_date}}</td>
+                                    <td>{{leave.get_reason_display}}</td>
+                                    <td class="text-center">
+                                        <div class="form-check">
+                                        <input type="checkbox" class="form-check-input filled-in" value="{{leave.id}}" id="{{leave.id}}" name="approved">
+                                        <label class="form-check-label" for="{{leave.id}}"></label>
+                                      </div>
+                                    </td>
+                                    {% if leave.cancelled == False %}
+                                        <td class="text-center">Active</td>
+                                    {% else %}
+                                        <td class="text-center">Cancelled</td>
+                                    {% endif %}
+                                    <td class="text-center">{{leave.num_days}}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% endif %}
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}       
+        

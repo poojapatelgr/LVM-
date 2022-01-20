@@ -1,0 +1,33 @@
+{% extends "leaveman/accountbase.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h5><a href="{% url 'leaveman:ls_history' %}" ><i class="fas fa-arrow-circle-left"></i></a> History of User: {{emp_user}}</h5>
+            </div>
+            <div class="card-body">
+                <table id="approvehist" class="table table-striped mt-2 mb-2" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th class="font-weight-bold text-center">From</th>
+                            <th class="font-weight-bold text-center">Days</th>
+                            <th class="font-weight-bold">Reason</th>
+                        </tr>   
+                    </thead>
+                        <tbody>
+                            {% for leave in emp_records %}
+                            <tr>
+                                <td class="text-center">{{leave.from_date}}</td>
+                                <td class="text-center">{{leave.num_days}}</td>
+                                <td class="text-center">{{leave.get_reason_display}}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %} 

@@ -1,0 +1,46 @@
+{% extends "leaveman/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<h4>Preview</h4>
+
+<div>
+  <table class="table">
+    <thead>
+    <tr>
+	<th class="text-center">Date</th>
+	<th class="text-left">Day</th>
+	<th class="text-left">Reason</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in leave_dates %}
+      <tr>
+      {% if item.4 == 'MATER' %}
+	<td class="text-center">{{ item.0 }}(180 days)</td>
+      {% else %}
+	<td class="text-center">{{ item.0 }}</td>
+      {% endif %}
+	<td>{{ item.1 }}</td>
+	<td>{{ item.3 }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+<div>
+  <form method="post">
+    {% csrf_token %}
+    <fieldset class="form-group">
+      {% for field in form %}{{ field.as_hidden }}
+      {% endfor %}
+    </fieldset>
+    <button class="btn btn-primary" type="submit">
+      Go back and edit
+    </a>
+    </button>
+    <!-- Submit button -->
+    <button class="btn btn-primary" name="_save" type="submit">Submit</button>
+    <!-- Go back button -->
+</div>
+</form>
+{% endblock content %}

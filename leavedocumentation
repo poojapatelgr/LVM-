@@ -1,0 +1,59 @@
+Leave Management App Documentation:
+
+Installed softwares:
+
+        1) Create Virtual Environment
+        2)Install pip
+        3)Django
+        4)formtools (pip install django-formtools)
+        5)crispy-forms also pip install --upgrade django-crispy-forms
+        6)dateutil (pip install python-dateutil)
+        7)pandas
+        8)openpyxl # This is used in reading and writing excel file used in export function
+
+--------------------------------------------------------------------------------------------------------------
+Folder structure:
+
+1)/home/sikshana/Leaveapp/
+
+        1.1)Profile_details.csv is generated after records creation which has token also(createrec.py)
+        1.2)Record.xlsx contains Employees information of sikshana
+        1.3)createrec.py is used to create Region, Holidays, User and update the User 
+        1.4)holiday_create.py is used to create holidays for all the regions
+        1.5)holidays.csv contain holidays for the entire year
+
+2)/home/sikshana/Leaveapp/leaves -- This is Main Project 
+
+3)/home/sikshana/Leaveapp/leaveman -- app under leaves project which has all the UI and functionalities of leave management application.
+
+4)/home/sikshana/Leaveapp/token  -- app under leaves project which has to token authentication functionalities.
+
+-------------------------------------------------------------------------------------------------------------
+How to run createrec.py ?
+
+--> source venv/bin/activate
+--> python3 manage.py shell
+--> exec(open('leaveman/createrec.py').read())
+
+------------------------------------------------------------------------------------------------------------
+Login credentials:
+
+--> root@164.52.219.66 or root@lms.myshaala.org
+--> password:!#sikshana#!
+--> MySql password : !#sikshana#!
+
+----------------------------------------------------------------------------------------------------------
+How to clear cache in gunicorn
+ 
+--> ps -aux | grep gunicorn
+You will get pid number on the left side(first line of your work) 
+--> kill -HUP pidnumber
+
+-----------------------------------------------------------------------------------------------------------
+Key Notes:
+
+1) Gender field should be 'F' or 'M' modified in shell 
+
+
+----------------------------------------------------------------------------------------------------------
+

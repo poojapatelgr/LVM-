@@ -1,0 +1,73 @@
+{% extends "leaveman/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="row mb-4">
+    <div class="col-md-4 mb-4">
+        {% for r,e in holidays.items %}
+            {% if forloop.counter == 1 %}
+                <div class="card mb-lg-0">	
+                    <div class="card-header white-text primary-color">
+                        <h5>{{r}}</h5>
+                    </div>
+                    <div class="card-body p-1">
+                        <div class="table-responsive m-0 p-0">
+                        <table id="holiday" class="cell-border">
+                            <thead>
+                                <tr>
+                                    <th class="font-weight-bold">Date</th>
+                                    <th class="font-weight-bold">Event</th>
+                                </tr>   
+                            </thead>
+                                <tbody>
+                                    {% for d in e %}
+                                    <tr>
+                                        <td>{{d.0}}</td>
+                                        <td>{{d.1}}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                        </table>
+                    </div>
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+    <div class="col-md-8">
+        <div class="row">
+            {% for r,e in holidays.items %}
+                {% if forloop.counter != 1 %}
+                    <div class="col-md-6 mb-2">
+                        <div class="card mb-lg-0">  
+                            <div class="card-header white-text primary-color">
+                                <h5>{{r}}</h5>
+                            </div>
+                            <div class="card-body p-1">
+                                <div class="table-responsive">
+                                    <table style="border:1px solid black;border-collapse: collapse;width: 100%;">
+                                        <thead>
+                                            <tr>
+                                                <th class="font-weight-bold" style="border:1px solid black;border-collapse: collapse;">Date</th>
+                                                <th class="font-weight-bold" style="border:1px solid black;border-collapse: collapse;">Event</th>
+                                            </tr>   
+                                        </thead>
+                                            <tbody>
+                                                {% for d in e %}
+                                                <tr>
+                                                    <td style="border:1px solid black;border-collapse: collapse;">{{d.0}}</td>
+                                                    <td style="border:1px solid black;border-collapse: collapse;">{{d.1}}</td>
+                                                </tr>
+                                                {% endfor %}
+                                            </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+        
+</div>
+{% endblock content %} 

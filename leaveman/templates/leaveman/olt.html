@@ -1,0 +1,66 @@
+{% extends "leaveman/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="table-responsive" id="onLeaveToday" role="todayHistory">
+                <table id = "leaveToday" class="table table-striped mt-2 mb-2" style = "width:100%">
+                    <thead>
+                        <tr class="text-center">
+                            <th class="font-weight-bold text-center">Name</th>
+                            <th class="font-weight-bold text-center">Days</th>
+                            <th class="font-weight-bold text-center">Reason</th>
+                            <th class="font-weight-bold text-center">Status</th>
+                            <th class="font-weight-bold text-center">Approval Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for leave in todayrecords %}
+                            {% if username == leave.approver_id %}
+                            <tr class="text-center">
+                                    <th>{{leave.recname}}</th>
+                                    {% if 'HD' in leave.reason %}
+                                    <td>{{leave.get_leave_period_display}}</td>
+                                    {% else %}
+                                    <td>{{leave.num_days}}</td>
+                                    {% endif %}
+                                    <td>{{leave.get_reason_display}}</td>
+                                    {% if leave.cancelled == True %}
+                                    <td>cancelled</td>
+                                    {% else %}
+                                    <td>Active</td>
+                                    {% endif %}
+                                    {% if leave.approved == True %}
+                                    <td>Approved</td>
+                                    {% else %}
+                                    <td>Not approved</td>
+                                    {% endif %}
+                            </tr>
+                            {% endif %}
+                        {% endfor %}
+                        {% for leave in todayrecords %}
+                            {% if username != leave.approver_id %}
+                            <tr class="text-center">
+                                    <th>{{leave.recname}}</th>
+                                    {% if 'HD' in leave.reason %}
+                                    <td>{{leave.get_leave_period_display}}</td>
+                                    {% else %}
+                                    <td>{{leave.num_days}}</td>
+                                    {% endif %}
+                                    <td>{{leave.get_reason_display}}</td>
+                                    {% if leave.cancelled == True %}
+                                    <td>cancelled</td>
+                                    {% else %}
+                                    <td>Active</td>
+                                    {% endif %}
+                                    {% if leave.approved == True %}
+                                    <td>Approved</td>
+                                    {% else %}
+                                    <td>Not approved</td>
+                                    {% endif %}
+                                </tr>
+                            {% endif %}
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+ {% endblock content %}
+                                     

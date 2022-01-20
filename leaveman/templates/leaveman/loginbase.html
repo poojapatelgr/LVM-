@@ -1,0 +1,41 @@
+{% load crispy_forms_tags %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>LVM - Home</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+    <link rel="stylesheet" href="{% static 'leaveman/dist/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'leaveman/dist/css/mdb.min.css' %}">
+  
+  </head>
+  <body class="single-page">
+    <main>
+      <div class="container">
+        <section class="mt-5 pb-3 wow fadeIn">
+          <div class="row justify-content-md-center">
+            <div class="col-md-4">
+              <div class="card card-cascade narrower z-depth-1 border-blue">
+                <div class="view view-cascade gradient-card-header blue-gradient narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center">
+                    <h4 class="white-text">
+                      <strong>Login</strong> 
+                    </h4>
+                </div>
+                <div class="card-body card-body-cascade text-center">
+                  {% block content %}{% endblock %}
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      <div>
+    </main>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+	<script type="text/javascript" src="{% static 'leaveman/dist/js/popper.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'leaveman/dist/js/bootstrap.js' %}"></script>
+	<script type="text/javascript" src="{% static 'leaveman/dist/js/mdb.min.js' %}"></script>
+  </body>
+</html>
