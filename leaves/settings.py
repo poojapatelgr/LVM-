@@ -25,7 +25,7 @@ SECRET_KEY = '34&+_-juo=3asri0b$168#1v@k6s)9c566#ub@bfsl-)+=7k1q'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.0.54', 'lms.myshaala.org', '164.52.219.66']
+ALLOWED_HOSTS = ['localhost', 'lms.myshaala.org']
 
 
 
